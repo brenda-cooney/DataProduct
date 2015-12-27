@@ -25,7 +25,8 @@ titanic_DF <- expand.table(Titanic)
 ```
 
 ```{r echo=FALSE}
-summary(titanic_DF)
+sumData <- summary(titanic_DF)
+knitr::kable(sumData)
 ```
 
 Prediction

@@ -22,13 +22,12 @@ DataSet
 
 
 
-```
-  Class         Sex          Age       Survived  
- 1st :325   Male  :1731   Child: 109   No :1490  
- 2nd :285   Female: 470   Adult:2092   Yes: 711  
- 3rd :706                                        
- Crew:885                                        
-```
+|   | Class     |    Sex       |   Age       |Survived   |
+|:--|:----------|:-------------|:------------|:----------|
+|   |1st :325   |Male  :1731   |Child: 109   |No :1490   |
+|   |2nd :285   |Female: 470   |Adult:2092   |Yes: 711   |
+|   |3rd :706   |NA            |NA           |NA         |
+|   |Crew:885   |NA            |NA           |NA         |
 
 Prediction
 ========================================================
@@ -43,11 +42,11 @@ Call:
                      Number of trees: 500
 No. of variables tried at each split: 1
 
-        OOB estimate of  error rate: 21.63%
+        OOB estimate of  error rate: 21.85%
 Confusion matrix:
       No Yes class.error
-No  1460  30  0.02013423
-Yes  446 265  0.62728551
+No  1458  32  0.02147651
+Yes  449 262  0.63150492
 ```
 
 Graphs
