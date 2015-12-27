@@ -1,0 +1,65 @@
+Titanic Survival Prediction
+========================================================
+author: Brenda Cooney
+date: Dec 26th, 2015
+
+Summary
+========================================================
+
+- Dataset (Brief into to Titanic Dataset)
+- Prediction (Info on Prediction Model Built)
+- Graph (Dotchart of variable importance)
+- Summary
+
+DataSet
+========================================================
+
+'Titanic' dataset in RStudio used. Dataset is converted from a 4-dimensional array into a 'data.frame' using 'expand.table'.It has 2201 observations on 4 variables.
+
+- Class: (1st, 2nd, 3rd, Crew)......Sex: (Male, Female)
+- Age: (Child, Adult)...............Survived: (No, Yes)
+
+```{r echo=FALSE}
+library(epitools)
+titanic_DF <- expand.table(Titanic)
+```
+
+```{r echo=FALSE}
+summary(titanic_DF)
+```
+
+Prediction
+========================================================
+Prediction model is created using method 'Random Forest'. **Outcome** variable is 'Survived' and all others are **Predictors**.
+
+```{r echo=FALSE}
+library(caret)
+library(randomForest)
+modelFit <- randomForest(Survived ~., data=titanic_DF)
+modelFit
+```
+
+Graphs
+========================================================
+Dotchart of variable importance as measured by a Random Forest
+
+```{r, echo=FALSE}
+varImpPlot(modelFit, main="Variable Importance")
+```
+
+Summary
+========================================================
+
+The Prediction Model is deployed to **shionyapps.io**. Any user can come to the site and attempt the prediction by: 
+- Selecting **Class**, **Sex**, and **Age** in the lefthand panel.
+
+Survival is predicted in the main section of the page:
+- **Yes** implies you would have survived the Titanic based on data selected. **No** implies you would not have survived. 
+
+There will be times that the prediction is incorrect, as the Prediction Model **Accuracy** for the given dataset is:
+
+```{r echo=FALSE}
+confMatrix<- confusionMatrix(titanic_DF$Survived, predict(modelFit, titanic_DF))
+```
+
+`r (confMatrix$overall[1]*100)`%
